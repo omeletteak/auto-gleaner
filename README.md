@@ -18,7 +18,7 @@ PixivFanboxDownloader 本体には手を入れない、独立したツールで�
 ```powershell
 git clone <このリポジトリ>
 cd privatter-fanbox-companion
-uv sync
+uv sync --locked   # uv.lock と一致しない場合は失敗する
 ```
 
 ## 使い方（予定）
@@ -42,6 +42,15 @@ uv run pytest
 - OS 固有の処理は `src/privatter_fanbox_companion/platform.py` にだけ書く。パスはすべて `pathlib`。
 - 実データ（txt、HTML、cookies、パスワード）はコミットしない。`tests/fixtures/` には匿名化したものだけを置く。
 
+## 依存パッケージの方針（サプライチェーン対策）
+
+- 実行時の依存は最小限にする。標準ライブラリで足りるものは標準ライブラリを使う（現在、実行時の依存はゼロ）
+- 追加するのは、広く使われていて保守が続いている有名なパッケージだけにする。追加前に PyPI で正確な名前、配布元、リポジトリを確認する（綴りの似た偽パッケージに注意）
+- `uv.lock` をコミットし、全パッケージをバージョンと sha256 ハッシュで固定する。インストールは `uv sync --locked` で行う
+- `pyproject.toml` の `exclude-newer = "7 days"` で、公開から7日たっていない版は使わない（乗っ取りで公開された悪性版を避けるため）
+- 依存を足すときは、何が推移的に入るかを `uv tree` で確認する
+- ネイティブコードを含むパッケージや、利用者の少ないパッケージ（例: ブラウザ Cookie を読む rookiepy）は、採用前に個別に判断する
+
 ## マイルストーン
 
 | | 内容 | 状態 |
@@ -58,7 +67,7 @@ uv run pytest
 ### M0
 
 ```powershell
-uv sync
+uv sync --locked
 uv run pfc --version          # => pfc 0.0.1
 uv run pfc run . --dry-run    # => 「まだ実装されていません」と表示され終了コード 2
 uv run ruff check .

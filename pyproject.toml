@@ -37,3 +37,7 @@ ignore = ["RUF001", "RUF002", "RUF003"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
+
+[tool.uv]
+# サプライチェーン対策: 公開から7日以上たった版だけを解決する（乗っ取り直後の悪性版を避ける）
+exclude-newer = "7 days"
