@@ -43,7 +43,7 @@ wheels = [
 ]
 
 [[package]]
-name = "privatter-fanbox-companion"
+name = "auto-gleaner"
 version = "0.0.1"
 source = { editable = "." }
 

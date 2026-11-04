@@ -1,4 +1,4 @@
-# privatter-fanbox-companion（仮）
+# auto-gleaner
 
 [PixivFanboxDownloader](https://github.com/xuejianxianzun/PixivFanboxDownloader) で保存した Fanbox 投稿フォルダを後処理するローカル CLI です。
 投稿本文の `.txt` に書かれた Privatter+（`https://privatter.me/page/...`）の URL とパスワードを読み取り、ページの原寸画像を `.txt` と同じフォルダに保存します。
@@ -17,16 +17,16 @@ PixivFanboxDownloader 本体には手を入れない、独立したツールで�
 
 ```powershell
 git clone <このリポジトリ>
-cd privatter-fanbox-companion
+cd auto-gleaner
 uv sync --locked   # uv.lock と一致しない場合は失敗する
 ```
 
 ## 使い方（予定）
 
 ```powershell
-uv run pfc run "C:\path\to\fanbox" --dry-run   # 抽出結果の確認のみ
-uv run pfc run "C:\path\to\fanbox"             # 本処理
-uv run pfc run "C:\path\to\fanbox" --verbose   # 詳細ログ
+uv run auto-gleaner run "C:\path\to\fanbox" --dry-run   # 抽出結果の確認のみ
+uv run auto-gleaner run "C:\path\to\fanbox"             # 本処理
+uv run auto-gleaner run "C:\path\to\fanbox" --verbose   # 詳細ログ
 ```
 
 設定は `config.example.toml` を `config.toml` にコピーして編集します。
@@ -39,7 +39,7 @@ uv run ruff format --check .
 uv run pytest
 ```
 
-- OS 固有の処理は `src/privatter_fanbox_companion/platform.py` にだけ書く。パスはすべて `pathlib`。
+- OS 固有の処理は `src/auto_gleaner/platform.py` にだけ書く。パスはすべて `pathlib`。
 - 実データ（txt、HTML、cookies、パスワード）はコミットしない。`tests/fixtures/` には匿名化したものだけを置く。
 
 ## 依存パッケージの方針（サプライチェーン対策）
@@ -68,8 +68,8 @@ uv run pytest
 
 ```powershell
 uv sync --locked
-uv run pfc --version          # => pfc 0.0.1
-uv run pfc run . --dry-run    # => 「まだ実装されていません」と表示され終了コード 2
+uv run auto-gleaner --version          # => auto-gleaner 0.0.1
+uv run auto-gleaner run . --dry-run    # => 「まだ実装されていません」と表示され終了コード 2
 uv run ruff check .
 uv run pytest                 # => すべて passed
 ```

@@ -1,7 +1,7 @@
 import pytest
 
-from privatter_fanbox_companion import __version__
-from privatter_fanbox_companion.cli import build_parser, main
+from auto_gleaner import __version__
+from auto_gleaner.cli import build_parser, main
 
 
 def test_version(capsys: pytest.CaptureFixture[str]) -> None:

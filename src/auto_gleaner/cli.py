@@ -11,7 +11,7 @@ from . import __version__
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="pfc",
+        prog="auto-gleaner",
         description="Fanbox 投稿の .txt から Privatter+ の原寸画像を保存します。",
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")

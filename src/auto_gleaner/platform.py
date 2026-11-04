@@ -9,7 +9,7 @@ import os
 import sys
 from pathlib import Path
 
-APP_NAME = "privatter-fanbox-companion"
+APP_NAME = "auto-gleaner"
 
 
 def is_windows() -> bool:
