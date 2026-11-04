@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# 実データ・個人情報（リポジトリに含めない）
+config.toml
+cookies.txt
+*cookies*.txt
+privatter_password.txt
+state.json
+*.state.json
+logs/
+*.log
+samples/
+real-data/
+*.html
+!tests/fixtures/**/*.html
+*.txt
+!tests/fixtures/**/*.txt
+
+# ダウンロードした画像
+privatter/
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

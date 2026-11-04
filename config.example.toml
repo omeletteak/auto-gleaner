@@ -1,0 +1,17 @@
+# config.toml の見本。コピーして config.toml として使う（config.toml は git 管理外）。
+
+# PixivFanboxDownloader の保存先
+root = "C:/Users/you/Downloads/fanbox"
+
+# Netscape 形式の cookies.txt（M3 で対応）
+cookies_file = ""
+
+# リクエスト間隔（秒）
+request_interval = 1.5
+
+# 保存先。{txt_dir} は .txt のあるフォルダ、{page_id} はページ ID、{index} は 1 始まりの連番
+save_path = "{txt_dir}/privatter/{page_id}/{index:03d}{ext}"
+
+# URL → パスワードの手動対応表（自動抽出が外れたとき用）
+[passwords]
+# "https://privatter.me/page/xxxxxxxx" = "password"
